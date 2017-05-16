@@ -41,8 +41,8 @@ const prices = [
                 [.07], [.05], [.05], [.03], [.03], [.03],                                                                   // Other imports
                 [.07, .3, .5, .2, .5, .2, .2, .1, .3, .3, .4, .4, .3, .4, 4],                                               // Tachyon
                 [.03], [.04], [.04], [.04], [.03], [.03], [.03],                                                            // Other boosts
-                [.07]                                                                                                       // Furry
-                ];
+                [.07],                                                                                                       // Furry
+                [.15]];
 
 const links = [
                 ["https://vignette3.wikia.nocookie.net/rocketleague/images/7/71/Roulette_wheel.png/revision/latest",        // Roulette
