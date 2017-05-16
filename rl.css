@@ -1,0 +1,229 @@
+header {
+    background-image: url("rocket_header.jpg");
+    padding: 1px;
+}
+
+header h1 {
+    color: white;
+}
+
+body {
+    text-align: center;
+    background-image: url("rocket.jpg");
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body, button, #search, select {
+    font-family: 'VT323', monospace;
+    font-size: 14pt;
+}
+
+button, .item, label, .check {
+    cursor: pointer;
+}
+
+.add {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.items {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 60%;
+    margin: 10px;
+    padding: 2px;
+    border: 2px solid black;
+}
+
+.show {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#tradeInput {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#tradeInput::after {
+  content: '';
+  width: 100%;
+}
+
+#yourResult, #theirResult {
+  order: 1;
+}
+
+#yours, #theirs, #yourResult, #theirResult {
+    width: 30%;
+    background: lightgray;
+    margin: 5px;
+    padding: 5px;
+}
+
+legend {
+    text-align: left;
+}
+
+.items, #search, .result, .menu, .filterDiv {
+    background-color: #be9b7b;
+}
+
+#search {
+    width: 80%;
+    border: 1px solid black;
+}
+
+footer, #footer {
+    position: fixed;
+    bottom: 10px;
+    background-color: lightgray;
+    width: 150px;
+    padding: 10px;
+}
+
+footer {
+    left: 10px;
+}
+
+#footer {
+    right: 10px;
+}
+
+p {
+    font-size: 12pt;
+}
+
+img {
+    width: 75%;
+}
+
+.item {
+    width: 17%;
+}
+
+.newItem {
+    width: 20%;
+}
+
+.item, .newItem {
+    background-color: black;
+    color: white;
+    border: 5px solid black;
+    margin: 0.5%;
+}
+
+.name {
+    color: inherit;
+}
+
+.item:hover {
+    border: 5px solid green;
+    color: green;
+}
+
+#options {
+    position: fixed;
+    background-color: lightgray;
+    padding: 5px;
+    top: 15px;
+    left: 15px;
+        width: 150px;
+
+}
+
+.price {
+    color: white;
+}
+
+.superCheap {
+    color: red;
+}
+
+.cheap {
+    color: orange;
+}
+
+.expensive {
+    color: green;
+}
+
+.medium {
+    color: yellow;
+}
+
+.superExpensive {
+    color: purple;
+}
+
+.but {
+    filter: invert(100%);
+    z-index: 1;
+    cursor: pointer;
+    float: right;
+    width: 10px;
+}
+
+.result p {
+    font-size: 22pt;
+}
+
+#theirTotal, #yourTotal {
+    color: blue;
+}
+
+#yourResult, #theirResult {
+    border: 2px solid blue;
+}
+
+.menu, .filterDiv {
+    position: absolute;
+    z-index: 1;
+    margin: 10px;
+    padding: 2px;
+    border: 1px solid black;
+}
+
+.menu {
+    width: 150px;
+}
+
+.filterDiv {
+    width: 230px;
+    order: 3;
+    background-color: #fff4e6;
+    padding: 10px;
+    text-align: left;
+}
+
+#filterMenu {
+    margin-left: 3px;
+    width: 17%;
+}
+
+#fbmsg {
+    height: 10em;
+}
+
+.input {
+    display: table-cell;
+    width: 100%;
+}
+
+#sugg {
+    text-align: center;
+}
+
+#form {
+    text-align: left;
+}
+
+.center {
+    text-align: center;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RL Trading Calculator</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="rl.css">
+        <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+        <script type="text/javascript" src="rl.js"></script>
+        
+        <meta name="author" content="Aluminum Lemon">
+        <meta name="description" content="Calculate the prices of your Rocket League items and your trader's items to 
+            see if the trade is fair! It's simple, easy, and free!">
+        <meta name="keywords" content="rocket league, rocket league calculator, rocket league trading, rocket league trading calculator">
+        
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        
+          ga('create', 'UA-91127116-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+    </head>
+    <body>
+        <div id="wrapper">
+        <header>
+            <h1>Rocket League Trading Calculator</h1>
+            <div id="options">
+                <h3>Options:</h3>
+                <fieldset>
+                    <legend>System:</legend>
+                    <select id="system" class="nope">
+                        <option disabled>Steam</option>
+                        <option selected>XBOX One</option></option>
+                        <option disabled>PS4</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend>Currency:</legend>
+                    <select id="currency" class="nope">
+                        <option id="heat" value="1" selected>Heatwaves</option>
+                        <option value="0">Crates</option>
+                    </select>
+                </fieldset>
+            </div>
+        </header>
+        <div id="tradeInput">
+            <div id="yours">
+                <fieldset class="field">
+                    <legend>Your items:</legend>
+                    <div id="yoursAdd" class="add">
+                        <button id="button1" class="dropbtn">Add item(s)</button>
+                    </div>
+                </fieldset>
+                <div id="drop" class="items">
+                    <input id="search" type="text" name="search" class="dropbtn" placeholder="Search..">
+                    <div id="filterMenu">
+                        <button id="filters" class="nope">Filters</button>
+                    </div>
+                    <br>
+                    <div id="Alchemist" class="item" type="wheel" quality="uncommon" num="20"></div>
+                    <div id="Alma" class="item" type="wheel" quality="uncommon" num="28"></div>
+                    <div id="ARA-51" class="item" type="wheel" quality="exotic" num="3"></div>
+                    <div id="Asterias" class="item" type="wheel" quality="rare" num="27"></div>
+                    <div id="Biomass" class="item" type="decal" quality="black_market" num="39"></div>
+                    <div id="Breakout Type-S" class="item" type="body" quality="import" num="52"></div>
+                    <div id="CC1" class="item" type="crate" quality="none" num="43"></div>
+                    <div id="CC2" class="item" type="crate" quality="none" num="44"></div>
+                    <div id="CC3" class="item" type="crate" quality="none" num="45"></div>
+                    <div id="CC4" class="item" type="crate" quality="none" num="46"></div>
+                    <div id="Chakram" class="item" type="wheel" quality="very_rare" num="14"></div>
+                    <div id="Dark Matter" class="item" type="rocket_trail" quality="import" num="60"></div>
+                    <div id="Dieci" class="item" type="wheel" quality="uncommon" num="16"></div>
+                    <div id="Discotheque" class="item" type="wheel" quality="exotic" num="4"></div>
+                    <div id="Dominus GT" class="item" type="body" quality="import" num="51"></div>
+                    <div id="Endo" class="item colorify" type="body" quality="import" num="49"></div>
+                    <div id="Falco" class="item" type="wheel" quality="uncommon" num="32"></div>
+                    <div id="Furry" class="item" type="paint" quality="import" num="64"></div>
+                    <div id="FSL" class="item" type="wheel import" num="11"></div>
+                    <div id="Goldstone" class="item" type="wheel" quality="limited" num="15"></div>
+                    <div id="Heatwave" class="item" type="decal" quality="black_market" num="38"></div>
+                    <div id="Hexed" class="item" type="decal" quality="black_market" num="36"></div>
+                    <div id="Hypernova" class="item" type="rocket_trail" quality="import" num="59"></div>
+                    <div id="Invader" class="item" type="wheel" quality="uncommon" num="22"></div>
+                    <div id="Kalos" class="item" type="wheel" quality="exotic" num="1"></div>
+                    <div id="Labyrinth" class="item" type="decal" quality="black_market" num="42"></div>
+                    <div id="Lobo" class="item" type="wheel" quality="exotic" num="7"></div>
+                    <div id="Looper" class="item" type="wheel" quality="exotic" num="8"></div>
+                    <div id="Lowrider" class="item" type="wheel" quality="uncommon" num="33"></div>
+                    <div id="Neptune" class="item" type="wheel" quality="uncommon" num="26"></div>
+                    <div id="Octane ZSR" class="item" type="body" quality="import" num="50"></div>
+                    <div id="Octavian" class="item" type="wheel" quality="uncommon" num="25"></div>
+                    <div id="OEM" class="item" type="wheel" quality="uncommon" num="24"></div>
+                    <div id="PCC" class="item" type="crate" quality="none" num="47"></div>
+                    <div id="Parallax" class="item" type="decal" quality="black_market" num="40"></div>
+                    <div id="Photon" class="item" type="wheel" quality="exotic" num="9"></div>
+                    <div id="Pixel Fire" class="item" type="rocket_trail" quality="import" num="62"></div>
+                    <div id="Polygonal" class="item" type="rocket_trail" quality="import" num="63"></div>
+                    <div id="Pulsus" class="item" type="wheel" quality="exotic" num="5"></div>
+                    <div id="Proton" class="item" type="rocket_trail" quality="import" num="58"></div>
+                    <div id="Radrod" class="item" type="wheel" quality="uncommon" num="31"></div>
+                    <div id="Road Hog XL" class="item" type="body" quality="import" num="55"></div>
+                    <div id="Roulette" class="item" type="wheel" quality="exotic" num="0"></div>
+                    <div id="Septem" class="item" type="wheel" quality="very_rare" num="10"></div>
+                    <div id="Slipstream" class="item" type="decal" quality="black_market" num="41"></div>
+                    <div id="Spiralis" class="item" type="wheel" quality="very_rare" num="12"></div>
+                    <div id="Spyder" class="item" type="wheel" quality="uncommon" num="21"></div>
+                    <div id="Stern" class="item" type="wheel" quality="uncommon" num="23"></div>
+                    <div id="Sunburst" class="item" type="wheel" quality="uncommon" num="17"></div>
+                    <div id="Tachyon" class="item colorify" type="rocket_trail" quality="import" num="56"></div>
+                    <div id="Takumi RX-T" class="item" type="body" quality="import" num="53"></div>
+                    <div id="Tora" class="item" type="decal" quality="black_market" num="37"></div>
+                    <div id="Trahere" class="item" type="wheel" quality="uncommon" num="34"></div>
+                    <div id="Trinity" class="item" type="rocket_trail" quality="import" num="61"></div>
+                    <div id="Troika" class="item" type="wheel" quality="very_rare" num="13"></div>
+                    <div id="Tunica" class="item" type="wheel" quality="uncommon" num="18"></div>
+                    <div id="Turbo Crate" class="item" type="crate" quality="none" num="48"></div>
+                    <div id="Veloce" class="item" type="wheel" quality="uncommon" num="29"></div>
+                    <div id="Voltaic" class="item" type="wheel" quality="exotic" num="6"></div>
+                    <div id="Vortex" class="item" type="wheel" quality="uncommon" num="19"></div>
+                    <div id="X-Devil MK2" class="item" type="body" quality="import" num="54"></div>
+                    <div id="Xenosplash" class="item" type="rocket_trail" quality="import" num="57"></div>
+                    <div id="Zeta" class="item" type="wheel" quality="rare" num="30"></div>
+                    <div id="Zomba" class="item" type="wheel" quality="exotic" num="2"></div>
+                    <div id="20xx" class="item" type="decal" quality="black_market" num="35"></div>
+                </div>
+            </div>
+            <div id="theirs">
+                <fieldset class="field">
+                    <legend>Their items:</legend>
+                    <div id="theirsAdd" class="add">
+                        <button id="button2" class="dropbtn">Add item(s)</button>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="result" id="yourResult">
+                <p>Total = <span id="yourTotal" value="0">0</span><span class="units">H</span></p>
+            </div>
+            <div class="result" id="theirResult">
+                <p>Total = <span id="theirTotal" value="0">0</span><span class="units">H</span></p>
+            </div>
+        </div>
+        <button id="clear">Clear</button>
+        <footer>
+            <p>
+                Disclaimer: These prices are determined by individual players and loosly
+                represent the Rocket League market. Remember that not everyone follows these prices
+                and trades shouldn't necesarily depend on these prices. That said, price sheets
+                can be helpful to make trades fair for both sides, so use them wisely!
+            </p>
+            <hr>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="76XH7DBEUKBDQ">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            </form>
+        </footer>
+            <div id="footer" class="form">
+                <h2 class="form">Questions? Suggestions? Feedback?</h2>
+                <p class="form">Email <a href="mailto:aluminumlemon@gmail.com">aluminumlemon@gmail.com</a></p>
+            </div>
+        </div>
+    </body>
+</html>
