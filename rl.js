@@ -36,13 +36,14 @@ const prices = [
                 [0, .07, .03, .05, .06, .05, .05, .05, .03, .05, .05, .05, .05, .05, .6],                                   // Lowrider
                 [0, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .4],                                   // Trahere
                 [2.7], [1.2], [.8], [1], [.5], [.6], [.4], [.3],                                                            // Black Market Decals
-                [(1 / 60)], [(1 / 60)], [(1 / 60)], [(1 / 45)], [(1 / 30)], [.05],                                          // Crates
+                [(1 / 60)], [(1 / 60)], [(1 / 60)], [(1 / 45)], [(1 / 30)], [.043],                                         // Crates
                 [.2, .4, 1.7, .4, 1.2, .5, .6, .7, .3, .4, .4, .8, .5, .8, 9],                                              // Endo
                 [.07], [.05], [.05], [.03], [.03], [.03],                                                                   // Other imports
                 [.07, .3, .5, .2, .5, .2, .2, .1, .3, .3, .4, .4, .3, .4, 4],                                               // Tachyon
                 [.03], [.04], [.04], [.04], [.03], [.03], [.03],                                                            // Other boosts
-                [.07],                                                                                                       // Furry
-                [.15]];
+                [.07],                                                                                                      // Furry
+                [.1],                                                                                                       // Nitro Crate
+                []];
 
 const links = [
                 ["https://vignette3.wikia.nocookie.net/rocketleague/images/7/71/Roulette_wheel.png/revision/latest",        // Roulette
@@ -211,8 +212,9 @@ const links = [
                 ["http://i.imgur.com/JTGuJjX.png"],                                                                         // Trinity
                 ["http://i.imgur.com/TfpFj9r.png"],                                                                         // Pixel Fire
                 ["http://i.imgur.com/28Hrhu7.png"],                                                                         // Polygonal
-                ["http://i.imgur.com/GSCtUoU.png"]                                                                          // Furry
-                ];
+                ["http://i.imgur.com/GSCtUoU.png"],                                                                         // Furry
+                ["http://i.imgur.com/RKKlRAj.png"],                                                                         // Nitro Crate
+                []];
 
 // jQuery stuff    
 $(document).ready(function() {
@@ -373,6 +375,9 @@ $(document).ready(function() {
             var span = document.createElement("span");
             setSpan(span, items[i].getAttribute('value'));
             p.appendChild(span);
+            var span2 = document.createElement("span");
+            p.appendChild(span2);
+            span2.className = "amount";
             items[i].appendChild(p);
         }
     };
@@ -697,7 +702,7 @@ $(document).ready(function() {
         item.id = this.id;
         item.setAttribute('value', this.getAttribute('value'));
         item.setAttribute('num', this.getAttribute('num'));
-        if (this.classList.contains("wheel") || this.classList.contains("colorify")) {
+        if (this.getAttribute("type") == "wheel" || this.classList.contains("colorify")) {
             item.setAttribute("colorify", "yep");
         } else {
             item.setAttribute("colorify", "");
@@ -765,11 +770,39 @@ $(document).ready(function() {
             var menu = document.createElement("div");
             this.parentElement.appendChild(menu);
             menu.className = "menu";
+
+            // change num button
+            menu.innerHTML = "Amount: ";
+            var b1 = document.createElement("button");
+            var b2 = document.createElement("button");
+            b1.className = "menuNope";
+            b2.className = "menuNope";
+            b1.onclick = subtract;
+            b2.onclick = add;
+            b1.innerHTML = "-";
+            b2.innerHTML = "+";
+            var numInput = document.createElement("span");
+            numInput.className = "menuNope number";
+            numInput.style.width = "17px";
+            numInput.style.textAlign = "right";
+            numInput.innerHTML = "1";
+            numInput.id = "number";
+            menu.appendChild(b1);
+            menu.appendChild(numInput);
+            menu.appendChild(b2);
+            var hr = document.createElement("hr");
+            menu.appendChild(hr);
+            hr.className = "menuNope";
+            hr.width = "90%";
             
             // color change dropdown
-            console.log(this.parentElement.getAttribute("colorify"));
             if (this.parentElement.getAttribute("colorify")) {
-                menu.innerHTML = "Color: ";
+                var p = document.createElement("p");
+                p.innerHTML = "Color: ";
+                menu.appendChild(p);
+                p.className = "menuNope";
+                p.style.fontSize = "inherit";
+                p.style.margin = "0";
                 var select = document.createElement("select");
                 select.className = "menuNope colorChanger";
                 menu.appendChild(select);
@@ -777,9 +810,10 @@ $(document).ready(function() {
                 select.onchange = changeColor;
                 select.setAttribute("prev", 0);
                 
-                var hr = document.createElement("hr");
-                menu.appendChild(hr);
-                hr.className = "menuNope";
+                var hr2 = document.createElement("hr");
+                menu.appendChild(hr2);
+                hr2.className = "menuNope";
+                hr2.width = "90%";
             }
             
             // remove button
@@ -790,17 +824,52 @@ $(document).ready(function() {
             menu.appendChild(button);
         }
     }
+
+    // adds one of the item
+    function add() {
+        this.parentElement.querySelector(".number").innerHTML++;
+        this.parentElement.parentElement.querySelector(".amount").innerHTML = " x" + this.parentElement.querySelector(".number").innerHTML;
+
+        // update totals
+        if(isTheirs) {
+            $("theirTotal").setAttribute("value", parseFloat($("theirTotal").getAttribute("value")) + parseFloat(this.parentElement.parentElement.getAttribute('value')));
+        } else {
+            $("yourTotal").setAttribute("value", parseFloat($("yourTotal").getAttribute("value")) + parseFloat(this.parentElement.parentElement.getAttribute('value')));
+        }
+        updateTotals();
+        roundTotals();
+    }
+
+    // subtracts one of the item
+    function subtract() {
+        if (this.parentElement.querySelector(".number").innerHTML > 1) {
+            this.parentElement.querySelector(".number").innerHTML--;
+            this.parentElement.parentElement.querySelector(".amount").innerHTML = " x" + this.parentElement.querySelector(".number").innerHTML;
+            if (this.parentElement.querySelector(".number").innerHTML == 1) {
+                this.parentElement.parentElement.querySelector(".amount").innerHTML = "";
+            }
+
+            // update totals
+            if(isTheirs) {
+                $("theirTotal").setAttribute("value", parseFloat($("theirTotal").getAttribute("value")) - parseFloat(this.parentElement.parentElement.getAttribute('value')));
+            } else {
+                $("yourTotal").setAttribute("value", parseFloat($("yourTotal").getAttribute("value")) - parseFloat(this.parentElement.parentElement.getAttribute('value')));
+            }
+            updateTotals();
+            roundTotals();
+        }   
+    }
     
     // Removes the item from the list
     function removeItem() {
         var item = this.parentElement.parentElement;
         if(item.classList.contains("theirItem")) {
             var oldTotal = parseFloat($("theirTotal").getAttribute("value"));
-            $("theirTotal").setAttribute("value", oldTotal - item.getAttribute("value"));
+            $("theirTotal").setAttribute("value", oldTotal - item.getAttribute("value") * this.parentElement.querySelector(".number").innerHTML);
             $("theirsAdd").removeChild(item);
         } else {
             var oldTotal = parseFloat($("yourTotal").getAttribute("value"));
-            $("yourTotal").setAttribute("value", oldTotal - item.getAttribute("value"));
+            $("yourTotal").setAttribute("value", oldTotal - item.getAttribute("value") * this.parentElement.querySelector(".number").innerHTML);
             $("yoursAdd").removeChild(item);
         }
         updateTotals();
