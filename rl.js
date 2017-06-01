@@ -1,7 +1,7 @@
 var currPrice;
 const prices = [
-                [.08, 1.1, 2.6, .7, 2.6, .9, .8, 1, .5, .7, .7, 1.4, .6, 1.9, 16],                                          // Roulette
-                [.08, .9, 1.7, .7, 2.2, .4, .8, 1, .4, .8, .6, 1.3, .6, 1.4, 14],                                           // Kalos
+                [.08, 1.1, 1.6, .5, 1.6, .6, .6, .9, .4, .5, .5, .9, .5, 1.1, 15],                                         // Roulette
+                [.08, .9, 1.5, .7, 1.7, .4, .8, 1, .3, .8, .6, 1.1, .6, 1.2, 14],                                           // Kalos
                 [.07, 2.4, 4.8, .5, .6, .4, .8, .9, .3, .5, .7, .7, .4, .9, 15],                                            // Zomba
                 [.04, .3, .4, .1, .5, .2, .3, .2, .1, .3, .3, .4, .2, .4, 12],                                              // ARA-51
                 [.04, null, .5, null, .5, .4, .5, .5, null, .3, .4, .5, .3, .5, 5],                                         // Discotheque
@@ -35,14 +35,28 @@ const prices = [
                 [0, .07, .03, .05, .06, .05, .05, .05, .03, .05, .05, .05, .05, .05, .6],                                   // Falco
                 [0, .07, .03, .05, .06, .05, .05, .05, .03, .05, .05, .05, .05, .05, .6],                                   // Lowrider
                 [0, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .03, .4],                                   // Trahere
-                [2.7], [1.2], [.8], [1], [.5], [.6], [.4], [.3],                                                            // Black Market Decals
-                [(1 / 60)], [(1 / 60)], [(1 / 60)], [(1 / 45)], [(1 / 30)], [.043],                                         // Crates
-                [.2, .4, 1.7, .4, 1.2, .5, .6, .7, .3, .4, .4, .8, .5, .8, 9],                                              // Endo
-                [.07], [.05], [.05], [.03], [.03], [.03],                                                                   // Other imports
+                [2],                                                                                                        // 20xx
+                [1.1],                                                                                                      // Hexed
+                [.7],                                                                                                       // Tora
+                [1],                                                                                                        // Heatwave
+                [.4],                                                                                                       // Biomass
+                [.6],                                                                                                       // Parallax
+                [.4],                                                                                                       // Slipstream
+                [.3],                                                                                                       // Labyrinth
+                [(1 / 60)], [(1 / 60)], [(1 / 60)], [(1 / 55)], [(1 / 40)], [.03],                                          // Crates
+                [.15, .4, 1.3, .4, 1, .5, .6, .7, .3, .4, .4, .8, .5, .8, 9],                                               // Endo
+                [.03], [.05], [.05], [.03], [.03], [.03],                                                                   // Other imports
                 [.07, .3, .5, .2, .5, .2, .2, .1, .3, .3, .4, .4, .3, .4, 4],                                               // Tachyon
                 [.03], [.04], [.04], [.04], [.03], [.03], [.03],                                                            // Other boosts
-                [.07],                                                                                                      // Furry
-                [.1],                                                                                                       // Nitro Crate
+                [.05],                                                                                                      // Furry
+                [.07],                                                                                                      // Nitro Crate
+                [.1, 1.3, 1.9, .5, 1.6, .7, .6, .4, .3, .7, .7, 1.4, .7, 1.2, 13],                                          // K2
+                [.2, 1.9, 2.3, 5.8, 2.5, 3.3, 5, 1.6, 2.4, 2.6, 4.3, .9, 4.4, 34],                                          // Draco
+                [.04, .4, .6, .2, .5, .3, .3, .3, .3, .4, .4, .5, .4, .5, 5],                                               // Triplex
+                [.03, .3, .7, .3, .5, .3, .4, .4, .2, .2, .3, .4, .4, .5, 5],                                               // Neo-Thermal
+                [.25, .5, 3.4, .5, 2.2, .9, .9, 1.2, .4, .7, .8, 1.4, .7, 1.6, 13],                                         // Mantis
+                [.07, .4, .5, .2, .5, .3, .4, .4, .1, .2, .2, .4, .3, .5, 5],                                               // Fireplug
+                [.03, .3, .5, .2, .5, .3, .4, .4, .2, .3, .3, .4, .3, .5, 5],                                               // Hexphase
                 []];
 
 const links = [
@@ -214,6 +228,111 @@ const links = [
                 ["http://i.imgur.com/28Hrhu7.png"],                                                                         // Polygonal
                 ["http://i.imgur.com/GSCtUoU.png"],                                                                         // Furry
                 ["http://i.imgur.com/RKKlRAj.png"],                                                                         // Nitro Crate
+                ["https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",            // K2
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/a/a2/K2_default.png/revision/latest"],                    // K2
+                ["https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",         // Draco
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/1/1b/Draco_default.png/revision/latest"],              // Draco
+                ["https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",       // Triplex
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest",
+                    "https://vignette4.wikia.nocookie.net/rocketleague/images/2/26/Triplex_default.png/revision/latest"],      
+                ["https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest", // Neo-Thermal
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/ef/Neo-Thermal_rocket_trail_icon.png/revision/latest"], 
+                ["https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",           // Mantis
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/b/bb/Mantis_body.png/revision/latest"],          
+                ["https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",      // Fireplug
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest",
+                    "https://vignette1.wikia.nocookie.net/rocketleague/images/e/eb/Fireplug_default.png/revision/latest"],     
+                ["https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest", // Hexphase
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest",
+                    "https://vignette3.wikia.nocookie.net/rocketleague/images/4/4b/Hexphase_rocket_trail_icon.png/revision/latest"], 
                 []];
 
 // jQuery stuff    
@@ -939,9 +1058,11 @@ $(document).ready(function() {
     // Changes the name of the item to match the color
     function updateName(item) {
         var p = item.querySelector("p");
-        var span = p.querySelector("span");
+        var spans = p.querySelectorAll("span");
         p.innerHTML = item.id;
-        p.appendChild(span);
+        for (var i = 0; i < spans.length; i++) {
+            p.appendChild(spans[i]);
+        }        
     }
     
     // Fills the select tag in the menu with options
